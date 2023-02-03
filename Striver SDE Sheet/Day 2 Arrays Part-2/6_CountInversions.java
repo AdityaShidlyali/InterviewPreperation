@@ -7,17 +7,17 @@ class Solution {
     static long mergeAndCount(long[] arr, long[] temp, int left, int mid, int right) {
         long inversionCount = 0;
         
-        int i = left, j = mid, k = left;
-        while (i <= mid - 1 && j <= right) {
+        int i = left, j = mid + 1, k = left;
+        while (i <= mid && j <= right) {
             if (arr[i] <= arr[j]) {
                 temp[k++] = arr[i++];
             } else {
                 temp[k++] = arr[j++];
-                inversionCount += (mid - i);
+                inversionCount += (mid - i + 1);
             }
         }
         
-        while (i <= mid - 1) {
+        while (i <= mid) {
             temp[k++] = arr[i++];
         }
         
@@ -40,7 +40,7 @@ class Solution {
             inversionCount += mergeSortAndCount(arr, temp, left, mid);
             inversionCount += mergeSortAndCount(arr, temp, mid + 1, right);
             
-            inversionCount += mergeAndCount(arr, temp, left, mid + 1, right);
+            inversionCount += mergeAndCount(arr, temp, left, mid, right);
         }
         return inversionCount;
     }
