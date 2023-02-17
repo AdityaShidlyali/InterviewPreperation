@@ -1,3 +1,7 @@
+/*
+	Time Complexity: O(n)
+	Space Complexity: O(N) + O(V + 2E)
+*/
 class Solution {
     
     private static void dfs(ArrayList<ArrayList<Integer>> graph, int node, boolean[] visited) {
