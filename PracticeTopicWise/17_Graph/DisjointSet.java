@@ -6,30 +6,32 @@ class DisjointSet {
     public DisjointSet(int n) {
         for (int i = 0; i <= n; i++) {
             rank.add(0);
+            size.add(0);
             parent.add(i);
         }
     }
 
-    public int finWithoutPathCompression(int node) {
+    public int findWithoutPathCompression(int node) {
         if (node == parent.get(node)) {
             return node;
         }
 
-        return finWithoutPathCompression(parent.get(node));
+        return findWithoutPathCompression(parent.get(node));
     }
 
-    public int finWithPathCompression(int node) {
+    public int findWithPathCompression(int node) {
         if (node == parent.get(node)) {
             return node;
         }
-        int ultimateParent = finWithPathCompression(parent.get(node));
+
+        int ultimateParent = findWithPathCompression(parent.get(node));
         parent.set(node, ultimateParent);
         return ultimateParent;
     }
 
     public void unionByRank(int u, int v) {
-        int ultimateParentU = finWithPathCompression(u);
-        int ultimateParentV = finWithPathCompression(v);
+        int ultimateParentU = findWithPathCompression(u);
+        int ultimateParentV = findWithPathCompression(v);
 
         if (ultimateParentU == ultimateParentV) {
             return;
@@ -47,8 +49,8 @@ class DisjointSet {
     }
 
     public void unionBySize(int u, int v) {
-        int ultimateParentU = finWithPathCompression(u);
-        int ultimateParentV = finWithPathCompression(v);
+        int ultimateParentU = findWithPathCompression(u);
+        int ultimateParentV = findWithPathCompression(v);
 
         if (ultimateParentU == ultimateParentV) {
             return;
