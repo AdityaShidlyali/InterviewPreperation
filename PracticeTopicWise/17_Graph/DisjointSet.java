@@ -1,12 +1,12 @@
 class DisjointSet {
-    private final List<Integer> rank = new ArrayList<>();
-    private final List<Integer> size = new ArrayList<>();
-    private final List<Integer> parent = new ArrayList<>();
+    public final List<Integer> rank = new ArrayList<>();
+    public final List<Integer> size = new ArrayList<>();
+    public final List<Integer> parent = new ArrayList<>();
 
     public DisjointSet(int n) {
         for (int i = 0; i <= n; i++) {
             rank.add(0);
-            size.add(0);
+            size.add(1);
             parent.add(i);
         }
     }
